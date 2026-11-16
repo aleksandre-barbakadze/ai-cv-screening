@@ -79,4 +79,4 @@ Airtable (database + form) · Make (automation) · Google Gemini API (document u
 ## Author
 
 Aleksandre Barbakadze. Operations and procurement background, building practical AI automations for small businesses.
-[Portfolio](https://aleksandre-barbakadze.notion.site/Hey-I-am-Aleksandre-Barbakadze-31513f1fef3a80f9b020e025ae6df360?source=copy_link) · [LinkedIn](www.linkedin.com/in/aleksandre-barbakadze)
+[Portfolio](https://aleksandre-barbakadze.notion.site/Hey-I-am-Aleksandre-Barbakadze-31513f1fef3a80f9b020e025ae6df360?source=copy_link) · [LinkedIn](https://www.linkedin.com/in/aleksandre-barbakadze)
