@@ -23,6 +23,28 @@ An automated first-pass CV screening system for small companies. A candidate app
 - **Career breaks and career changes** are not treated as negatives by themselves.
 - **Human in the loop.** The system never rejects or invites anyone on its own.
 
+- ## Two views of the same data
+
+### For the recruiter: Airtable Interface
+
+Candidates move through a Kanban board: New → AI screened → Shortlisted → Interview → Rejected. Cards are coloured by the AI recommendation and sorted by score.
+
+![Recruiter Kanban](recruiter-kanban.png)
+
+Clicking a card opens the candidate page: the AI score, recommendation, evidence for every criterion, concerns, and a preview of the CV that can be opened or printed.
+
+**AI fields are read-only. The recruiter can only change Status and write Reviewer notes**, so it is always visible what the AI suggested and what the human decided.
+
+![Candidate detail](candidate-detail.png)
+
+### For the manager: Data Studio dashboard
+
+Every screened candidate is also written automatically to Google Sheets (without email or CV link, to keep personal data to a minimum). A Data Studio dashboard (formerly Looker Studio) reads that sheet and shows totals, average score, the recommendation split and a filter by vacancy.
+
+![Dashboard](dashboard.png)
+
+[Open the live dashboard](https://datastudio.google.com/reporting/8e602e50-e803-40f2-b125-9ad20d618af0)
+
 ## One system, many vacancies
 
 Vacancies live in their own Airtable table (`Vacancies`: name + criteria). Each candidate is linked to a vacancy, and the vacancy's criteria are passed to the model automatically. **A new vacancy is one new row in a table. The automation does not change.**
@@ -100,7 +122,7 @@ OUTPUT:
 
 ## Tools
 
-Airtable (database + form) · Make (automation) · Google Gemini API (document understanding, structured output)
+Airtable (database, form, interface) · Make (automation) · Google Gemini API (document understanding, structured output) · Google Sheets · Data Studio (formerly Looker Studio)
 
 ## Author
 
