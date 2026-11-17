@@ -12,6 +12,7 @@ An automated first-pass CV screening system for small companies. A candidate app
 2. **Make scenario.** Every 15 minutes it takes the next candidate with status `New`.
 3. **Google Gemini** reads the PDF and returns structured data: `score` (0–100), `recommendation`, `evidence` and `concerns`.
 4. **Airtable** stores the result and sets the status to `AI screened`. A reviewer then moves the candidate to `Shortlisted`, `Interview` or `Rejected`.
+5. **Google Sheets + Data Studio.** Each result is also added to a Google Sheet that feeds the manager dashboard.
 
 ![Application form](form.png)
 
@@ -89,11 +90,12 @@ Before running the test, an expected outcome was written down for each of the 15
 
 ## Limitations (honest notes)
 
-- **Free tiers.** The Gemini API free tier allowed about 20 requests per day per model, and the model sometimes returned `503 high demand`. Make's free plan also limits monthly credits. For a real client this needs a paid API key and an error-handling / retry route.
-- **Model change.** The first round used Gemini 3.8 Flash. Because of repeated 503 errors, all candidates were re-scored with Gemini 3.6 Flash.
-- **Personal data.** Real CVs are personal data (GDPR). A production version needs a paid API plan that does not use inputs for training, a privacy notice for candidates, a retention period and access control.
+- **Free tiers.** The Gemini API free tier allowed about 20 requests per day per model, and the model sometimes returned `503 high demand`. Make's free plan limits monthly credits and allows two active scenarios. For a real client this needs a paid API key and an error-handling / retry route.
+- **Model change.** The first round used Gemini 3.8 Flash. Because of repeated 503 errors, all candidates were re-scored with Gemini 3.6 Flash. The results above are from that final run.
+- **Backfill.** The Google Sheets export was added after most candidates were already scored. Their results were copied once with a separate scenario, so 12 of the 15 rows have no "Screened at" time.
+- **Permissions.** In the recruiter interface the AI fields are read-only, but anyone with edit access to the base could still change the underlying table. A production setup needs proper role-based access. The interface was built during an Airtable Team trial, so some settings may need a paid plan.
+- **Personal data.** Real CVs are personal data (GDPR). A production version needs a paid API plan that does not use inputs for training, a privacy notice for candidates, a retention period and access control. The Sheets export already leaves out email and CV links.
 - **AI can be wrong.** Scores are a first filter, not a decision. Borderline candidates should always be read by a human.
-
 ## The prompt
 
 The general part of the prompt is the same for every vacancy. The vacancy criteria are inserted between the markers from Airtable.
